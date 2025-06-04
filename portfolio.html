@@ -11,9 +11,9 @@
 </head>
 <body>
     <header>
-        <div class="container">
+        <div class="container header-content">
             <a href="index.html" class="logo">
-                <img src="assets/images/IMG-20250530-WA0000.jpeg" alt="Logo Ipang Konveksi">
+                <img src="assets/images/logo-utama.jpeg" alt="Logo Ipang Konveksi">
             </a>
             <nav>
                 <div class="hamburger">
@@ -28,127 +28,153 @@
                     <li><a href="clients.html">Klien Kami</a></li>
                     <li><a href="about.html">Tentang Kami</a></li>
                     <li><a href="contact.html">Kontak</a></li>
-                    <li><a href="products.html" class="btn btn-primary">Koleksi Kami</a></li>
+                    <li><a href="products.html">Koleksi Kami</a></li>
                 </ul>
             </nav>
+            <a href="contact.html" class="btn-cta-header">Mulai Proyek Anda</a>
         </div>
     </header>
 
     <main>
-        <section class="page-hero">
-            <div class="container">
-                <h1>Karya-Karya Terbaik Ipangkonveksi</h1>
-                <p>Lihat bukti nyata kualitas dan keahlian jahitan kami. Setiap produk dalam portofolio ini mencerminkan dedikasi kami pada detail dan presisi.</p>
+        <section class="hero-subpage" style="background-image: url('assets/images/hero-portfolio.jpg');">
+            <div class="hero-content">
+                <h1>Portofolio Kami</h1>
+                <p>Karya Terbaik Kami, Kualitas Tak Tertandingi</p>
             </div>
         </section>
 
-        <section class="portfolio-gallery">
+        <section class="portfolio-section section-padding">
             <div class="container">
-                <div class="filter-buttons">
+                <h2 class="section-title">Telusuri Hasil Produksi Kami</h2>
+                <p class="section-subtitle">Kami bangga dengan setiap jahitan yang kami hasilkan. Lihat beragam proyek yang telah kami selesaikan.</p>
+
+                <div class="filter-buttons text-center">
                     <button class="btn active" data-filter="all">Semua</button>
                     <button class="btn" data-filter="busana-muslim">Busana Muslim</button>
-                    <button class="btn" data-filter="active-wear">Active Wear</button>
-                    <button class="btn" data-filter="seragam">Seragam</button>
-                    <button class="btn" data-filter="custom">Custom Order</button>
+                    <button class="btn" data-filter="pakaian-wanita">Pakaian Wanita</button>
+                    <button class="btn" data-filter="kebutuhan-khusus">Kebutuhan Khusus</button>
                     </div>
+
                 <div class="gallery-grid">
                     <div class="gallery-item" data-category="busana-muslim">
-                        <img src="assets/images/portfolio/portfolio-1.jpeg" alt="Busana Muslim Elegant">
-                        <div class="overlay">
-                            <h4>Gaun Pesta Bahan Satin</h4>
-                            <p>Detail jahitan rapi dan finishing mewah.</p>
+                        <img src="assets/images/portfolio/gamis-modern.jpg" alt="Gamis Modern">
+                        <div class="gallery-info">
+                            <h3>Gamis Modern Elegan</h3>
+                            <p>Desain syar'i dengan sentuhan kontemporer, bahan premium.</p>
                         </div>
                     </div>
-                    <div class="gallery-item" data-category="active-wear">
-                        <img src="assets/images/portfolio/portfolio-2.jpeg" alt="Setelan Olahraga Muslimah">
-                        <div class="overlay">
-                            <h4>Setelan Olahraga Syar'i</h4>
-                            <p>Desain fungsional dengan material nyaman.</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-category="seragam">
-                        <img src="assets/images/portfolio/portfolio-3.jpeg" alt="Seragam Kantor Kualitas Premium">
-                        <div class="overlay">
-                            <h4>Seragam Kantor Profesional</h4>
-                            <p>Potongan presisi dan material berkualitas.</p>
+                    <div class="gallery-item" data-category="pakaian-wanita">
+                        <img src="assets/images/portfolio/blouse-casual.jpg" alt="Blouse Casual Wanita">
+                        <div class="gallery-info">
+                            <h3>Blouse Casual Wanita</h3>
+                            <p>Jahitan rapi, nyaman, cocok untuk sehari-hari.</p>
                         </div>
                     </div>
                     <div class="gallery-item" data-category="busana-muslim">
-                        <img src="assets/images/products-clients/zayra-zalina.jpeg" alt="Gamis Modern">
-                        <div class="overlay">
-                            <h4>Gamis Wanita Elegan</h4>
-                            <p>Contoh produksi gamis dengan detail unik.</p>
+                        <img src="assets/images/portfolio/koko-premium.jpg" alt="Koko Premium Pria">
+                        <div class="gallery-info">
+                            <h3>Koko Premium Pria</h3>
+                            <p>Kemeja koko dengan detail bordir halus dan bahan adem.</p>
                         </div>
                     </div>
-                    <div class="gallery-item" data-category="active-wear">
-                        <img src="assets/images/products-clients/roku 1.jpeg" alt="Active Wear Premium">
-                        <div class="overlay">
-                            <h4>Setelan Olahraga Active Wear</h4>
-                            <p>Hasil jahitan untuk busana olahraga Muslimah.</p>
+                     <div class="gallery-item" data-category="kebutuhan-khusus">
+                        <img src="assets/images/portfolio/seragam-kantor.jpg" alt="Seragam Kantor">
+                        <div class="gallery-info">
+                            <h3>Seragam Kantor Custom</h3>
+                            <p>Seragam dengan logo bordir, nyaman dan profesional.</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="pakaian-wanita">
+                        <img src="assets/images/portfolio/dress-pesta.jpg" alt="Dress Pesta Eksklusif">
+                        <div class="gallery-info">
+                            <h3>Dress Pesta Eksklusif</h3>
+                            <p>Gaun dengan payet dan drape, cocok untuk acara formal.</p>
                         </div>
                     </div>
                     <div class="gallery-item" data-category="busana-muslim">
-                        <img src="assets/images/products-clients/gimi-nissa.jpeg" alt="Dress Muslimah Simple">
-                        <div class="overlay">
-                            <h4>Nissa Dress</h4>
-                            <p>Dress simple dan elegan untuk daily wear.</p>
+                        <img src="assets/images/portfolio/khimar-syari.jpg" alt="Khimar Syar'i">
+                        <div class="gallery-info">
+                            <h3>Khimar Syar'i Cantik</h3>
+                            <p>Jilbab panjang menutup dada, bahan jatuh dan tidak menerawang.</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="kebutuhan-khusus">
+                        <img src="assets/images/portfolio/masker-kain.jpg" alt="Masker Kain Custom">
+                        <div class="gallery-info">
+                            <h3>Produksi Masker Kain</h3>
+                            <p>Masker kain berkualitas tinggi, bisa dicustom logo.</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="pakaian-wanita">
+                        <img src="assets/images/portfolio/outerwear-casual.jpg" alt="Outerwear Casual">
+                        <div class="gallery-info">
+                            <h3>Outerwear Casual</h3>
+                            <p>Cardigan dan jaket ringan untuk gaya sehari-hari.</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="busana-muslim">
+                        <img src="assets/images/portfolio/tunik-modern.jpg" alt="Tunik Modern">
+                        <div class="gallery-info">
+                            <h3>Tunik Modern Motif</h3>
+                            <p>Tunik dengan desain modern dan motif menarik.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="contact-cta">
+        <section class="cta-section section-padding text-center bg-primary text-white">
             <div class="container">
-                <h2>Ingin Kualitas Seperti Ini untuk Brand Anda?</h2>
-                <p>Kami siap membantu mewujudkan visi produk Anda. Hubungi kami untuk konsultasi gratis.</p>
-                <a href="contact.html" class="btn btn-primary">Hubungi Kami Sekarang</a>
+                <h2>Siap Wujudkan Brand Anda?</h2>
+                <p>Mulai proyek konveksi impian Anda bersama Ipangkonveksi. Dapatkan konsultasi gratis sekarang!</p>
+                <a href="contact.html" class="btn-white">Hubungi Kami</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <h3>Tentang Ipangkonveksi</h3>
-                <p>Ipangkonveksi adalah mitra maklun konveksi terkemuka di Bandung, berkomitmen pada kualitas dan presisi jahitan untuk setiap brand fashion.</p>
-            </div>
-            <div class="footer-col">
-                <h3>Navigasi Cepat</h3>
-                <ul>
-                    <li><a href="index.html">Beranda</a></li>
-                    <li><a href="services.html">Layanan Maklun</a></li>
-                    <li><a href="portfolio.html">Portofolio</a></li>
-                    <li><a href="clients.html">Klien Kami</a></li>
-                    <li><a href="about.html">Tentang Kami</a></li>
-                    <li><a href="contact.html">Kontak</a></li>
-                    <li><a href="products.html">Koleksi Kami</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Kontak Kami</h3>
-                <p><strong>Alamat:</strong> Rancapanjang RT03/RW04 Desa. Sukamulya Kec. Rancaekek Kab. Bandung 40394, Bandung, Indonesia, 40394</p>
-                <p><strong>WhatsApp:</strong> <a href="https://wa.me/62881023706063" target="_blank">0881-0237-06063</a></p>
-                <p><strong>Email:</strong> <a href="mailto:syahhh127@gmail.com">syahhh127@gmail.com</a></p>
-                <p><strong>Jam Operasional:</strong></p>
-                <p>Senin - Jumat: 09.00 - 17.00 WIB</p>
-                <p>Sabtu: 09.00 - 14.00 WIB</p>
-                <p>Minggu: Tutup</p>
-            </div>
-            <div class="footer-col">
-                <h3>Ikuti Kami</h3>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/share/19cvpUcbL2/?mibextid=qi2Omg" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/ipangkonveksi/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://shopee.co.id/sylna_hijab" target="_blank"><i class="fas fa-shopping-bag"></i></a>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Ipangkonveksi</h3>
+                    <p>Mitra terpercaya Anda dalam produksi garmen berkualitas tinggi. Dedikasi pada presisi dan kepuasan pelanggan.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Navigasi</h3>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="services.html">Layanan Maklun</a></li>
+                        <li><a href="portfolio.html">Portofolio</a></li>
+                        <li><a href="clients.html">Klien Kami</a></li>
+                        <li><a href="about.html">Tentang Kami</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                        <li><a href="products.html">Koleksi Kami</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Kontak Kami</h3>
+                    <p><strong>Alamat:</strong> Rancapanjang RT03/RW04 Desa. Sukamulya Kec. Rancaekek Kab. Bandung 40394, Bandung, Indonesia, 40394</p>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/62881023706063" target="_blank">0881-0237-06063</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:syahhh127@gmail.com">syahhh127@gmail.com</a></p>
+                    <p><strong>Jam Operasional:</strong></p>
+                    <p>Senin - Jumat: 09.00 - 17.00 WIB</p>
+                    <p>Sabtu: 09.00 - 14.00 WIB</p>
+                    <p>Minggu: Tutup</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Ikuti Kami</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/19cvpUcbL2/?mibextid=qi2Omg" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/ipangkonveksi/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
                 </div>
             </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2025 Ipangkonveksi. All Rights Reserved.</p>
+            <div class="footer-bottom">
+                <p>© 2025 Ipangkonveksi. Hak Cipta Dilindungi.</p>
+            </div>
         </div>
     </footer>
 
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>
