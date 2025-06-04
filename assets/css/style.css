@@ -869,3 +869,8 @@ footer {
         padding: 0;
     }
 }
+
+/* Aturan untuk menyembunyikan elemen */
+.hidden {
+    display: none !important; /* Gunakan !important untuk memastikan aturan ini diutamakan */
+}
