@@ -3,8 +3,8 @@
     --primary-color: #a0740a; /* Emas Lembut - Profesional */
     --secondary-color: #f5f5f5; /* Krem/Putih Gading - Bersih */
     --accent-color: #b8860b; /* Emas Lembut - Elegan */
-    --text-color: #333;
-    --light-text-color: #666;
+    --text-color: #0c0c0c;
+    --light-text-color: #a8a7a7;
     --white-color: #fff;
     --border-color: #ddd;
     --transition-speed: 0.3s;
@@ -149,6 +149,19 @@ nav .nav-links li a {
 
 nav .nav-links li a:hover {
     color: var(--accent-color);
+}
+
+/* Styling untuk tombol CTA di header */
+.btn-cta-header {
+    background-color: var(--accent-color); /* Emas Lembut */
+    color: var(--white-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.btn-cta-header:hover {
+    background-color: #595754; /* Warna emas sedikit lebih gelap saat hover */
 }
 
 .hamburger {
@@ -429,6 +442,24 @@ footer {
 
 .footer-col ul li a:hover {
     color: var(--white-color);
+}
+
+/* Pastikan tautan di footer berwarna putih */
+.footer-col p a {
+    color: var(--white-color); /* Mengatur warna tautan di dalam paragraf footer menjadi putih */
+}
+
+.footer-col p a:hover {
+    color: var(--accent-color); /* Opsional: Mengubah warna saat di-hover menjadi emas lembut */
+}
+
+/* Jika ada tautan sosial media di footer yang juga ingin dipastikan putih */
+.footer-col .social-links a {
+    color: var(--white-color);
+}
+
+.footer-col .social-links a:hover {
+    color: var(--accent-color);
 }
 
 .social-links a {
@@ -785,8 +816,9 @@ footer {
         font-size: 3em;
     }
 
+    /* Modifikasi untuk menu navigasi mobile */
     nav .nav-links {
-        display: none;
+        display: none; /* Sembunyikan secara default */
         flex-direction: column;
         width: 100%;
         background-color: var(--white-color);
@@ -798,7 +830,7 @@ footer {
     }
 
     nav .nav-links.active {
-        display: flex;
+        display: flex; /* Tampilkan saat aktif */
     }
 
     nav .nav-links li {
@@ -819,6 +851,11 @@ footer {
 
     .hamburger {
         display: flex;
+    }
+
+    /* Aturan untuk menyembunyikan tombol CTA di header saat menu mobile aktif */
+    .header-content.active .btn-cta-header {
+        display: none;
     }
 
     .features-grid,
@@ -868,9 +905,4 @@ footer {
     .contact-info {
         padding: 0;
     }
-}
-
-/* Aturan untuk menyembunyikan elemen */
-.hidden {
-    display: none !important; /* Gunakan !important untuk memastikan aturan ini diutamakan */
 }
