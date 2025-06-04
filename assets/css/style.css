@@ -2,9 +2,9 @@
 :root {
     --primary-color: #a0740a; /* Emas Lembut - Profesional */
     --secondary-color: #f5f5f5; /* Krem/Putih Gading - Bersih */
-    --accent-color: #b8860b; /* Emas Lembut - Elegan */
-    --text-color: #0c0c0c;
-    --light-text-color: #a8a7a7;
+    --accent-color: #efebe3; /* Emas Lembut - Elegan */
+    --text-color: #333;
+    --light-text-color: #666;
     --white-color: #fff;
     --border-color: #ddd;
     --transition-speed: 0.3s;
@@ -154,14 +154,14 @@ nav .nav-links li a:hover {
 /* Styling untuk tombol CTA di header */
 .btn-cta-header {
     background-color: var(--accent-color); /* Emas Lembut */
-    color: var(--white-color);
+    color: var(--white-color) !important; /* Pastikan teks putih */
     padding: 10px 20px;
     border-radius: 5px;
     transition: background-color var(--transition-speed) ease;
 }
 
 .btn-cta-header:hover {
-    background-color: #595754; /* Warna emas sedikit lebih gelap saat hover */
+    background-color: #a0740a; /* Warna emas sedikit lebih gelap saat hover */
 }
 
 .hamburger {
