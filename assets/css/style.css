@@ -965,52 +965,53 @@ footer {
         box-shadow: none; /* Hapus bayangan agar lebih bersih di mobile */
     }
 
-    /* --- KRITIKAL: CHATBOT STYLES UNTUK MOBILE --- */
+    /* --- KRITIKAL: CHATBOT STYLES UNTUK MOBILE (Diperbarui) --- */
     .chatbot-container {
         position: fixed !important; /* Pastikan posisi tetap relatif terhadap viewport */
-        bottom: 10px !important; /* Jarak dari bawah */
-        right: 10px !important; /* Jarak dari kanan */
+        bottom: 15px !important; /* Jarak dari bawah, sedikit dinaikkan */
+        right: 15px !important; /* Jarak dari kanan, sedikit digeser */
         left: auto !important;   /* Pastikan tidak menempel ke kiri */
         top: auto !important;    /* Pastikan tidak menempel ke atas */
+        z-index: 100000 !important; /* Sangat tinggi untuk memastikan di atas segalanya */
         transform: none !important; /* Hapus transformasi yang mungkin mengganggu positioning */
     }
 
     .chatbot-toggle {
-        width: 50px; /* Ukuran lebih kecil di mobile */
-        height: 50px;
+        width: 55px !important; /* Ukuran ikon chatbot yang sedikit lebih besar */
+        height: 55px !important;
     }
 
     .chatbot-icon {
-        width: 30px;
-        height: 30px;
+        width: 35px !important; /* Ukuran gambar ikon yang sesuai */
+        height: 35px !important;
     }
 
     .chatbot-window {
-        /* Menggunakan max-width dan width: 100% untuk kontrol lebih baik */
-        max-width: calc(100vw - 20px); /* Maks lebar 100% viewport dikurangi margin total 20px */
-        width: 320px; /* Default lebar agar tidak terlalu kecil di layar besar, ini akan dibatasi oleh max-width */
-        height: 400px; /* Lebih pendek di mobile */
-        bottom: 70px; /* Di atas tombol toggle */
-        right: 0; /* Tetap 0, max-width akan mengatur */
-        left: auto; /* Untuk memastikan tetap di kanan */
+        /* Menggunakan ukuran eksplisit dan lebih kecil untuk mobile */
+        width: 280px !important; /* Lebar jendela chatbot yang lebih kecil */
+        height: 380px !important; /* Tinggi jendela chatbot yang lebih kecil */
+        bottom: 80px !important; /* Posisi di atas tombol toggle, disesuaikan */
+        right: 0 !important; /* Tetap 0, tapi lebar sudah fixed */
+        left: auto !important; /* Untuk memastikan tetap di kanan */
+        max-width: none !important; /* Hapus batasan max-width yang mungkin konflik */
     }
 
     .chat-header h3 {
-        font-size: 1.1em;
+        font-size: 1em; /* Sedikit lebih kecil agar pas */
     }
 
     .chat-close {
-        font-size: 1.5em;
+        font-size: 1.4em; /* Sedikit lebih kecil agar pas */
     }
 
     .chat-message {
-        font-size: 0.9em;
+        font-size: 0.85em; /* Ukuran teks pesan lebih kecil */
     }
 
     .chat-input-area input,
     .chat-send {
-        font-size: 0.9em;
-        padding: 8px 12px;
+        font-size: 0.85em; /* Ukuran font input/tombol lebih kecil */
+        padding: 7px 10px; /* Padding input/tombol lebih kecil */
     }
 }
 
