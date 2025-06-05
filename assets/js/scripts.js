@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Fungsionalitas Chatbot "Asisten Kang Ipang" ---
 
+    // Pastikan semua elemen chatbot ditemukan sebelum mencoba menggunakannya
     const chatbotToggle = document.getElementById('chatbot-toggle');
     const chatbotWindow = document.getElementById('chatbot-window');
     const chatCloseButton = document.getElementById('chat-close');
@@ -38,11 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
             answer: "Ipangkonveksi menyediakan jasa Pola & Potong, Jahit Konveksi, Sablon/Bordir, dan Produksi Lengkap (Full Package). Anda bisa melihat detailnya di halaman <a href='services.html'>Layanan Maklun</a>."
         },
         {
-            keywords: ['alamat', 'lokasi', 'dimana'],
+            keywords: ['alamat', 'lokasi', 'dimana', 'tempat'],
             answer: "Kami berlokasi di Rancapanjang RT03/RW04 Desa. Sukamulya Kec. Rancaekek Kab. Bandung 40394. Anda bisa melihatnya di <a href='contact.html#map-section'>Peta Lokasi</a>."
         },
         {
-            keywords: ['pesan', 'pemesanan', 'cara pesan'],
+            keywords: ['pesan', 'pemesanan', 'cara pesan', 'order'],
             answer: "Anda bisa memulai proyek dengan menghubungi tim kami melalui WhatsApp atau mengisi formulir di halaman <a href='contact.html'>Kontak</a>. Kami akan memandu Anda melalui prosesnya!"
         },
         {
@@ -58,11 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
             answer: "Sylna Hijab adalah brand eksklusif Ipangkonveksi yang menghadirkan koleksi busana muslim dan hijab berkualitas tinggi. Anda bisa melihat koleksinya di halaman <a href='products.html'>Koleksi Kami</a>."
         },
         {
-            keywords: ['contoh produk', 'portofolio', 'hasil produksi'],
+            keywords: ['contoh produk', 'portofolio', 'hasil produksi', 'klien'],
             answer: "Tentu! Anda bisa melihat beberapa contoh produk yang pernah kami kerjakan dan klien kami di halaman <a href='clients.html'>Klien Kami</a>."
         },
         {
-            keywords: ['terima kasih', 'makasih'],
+            keywords: ['terima kasih', 'makasih', 'oke'],
             answer: "Sama-sama! Ada lagi yang bisa Asisten Kang Ipang bantu?"
         },
         {
@@ -70,8 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
             answer: "Halo juga! Senang bisa membantu Anda. Ada pertanyaan seputar layanan kami?"
         },
         {
-            keywords: ['tim', 'hubungi'],
+            keywords: ['tim', 'hubungi', 'whatsapp', 'email', 'kontak'],
             answer: "Tentu, Anda bisa menghubungi tim kami melalui WhatsApp di <a href='https://wa.me/62881023706063' target='_blank'>0881-0237-06063</a> atau mengisi formulir di halaman <a href='contact.html'>Kontak</a>."
+        },
+        {
+            keywords: ['tentang kami', 'profil', 'sejarah'],
+            answer: "Ipangkonveksi adalah mitra maklun konveksi terkemuka di Bandung, berkomitmen pada kualitas dan presisi jahitan. Didirikan dengan fokus pada kepuasan klien dan kualitas terbaik. Selengkapnya di halaman <a href='about.html'>Tentang Kami</a>."
         }
     ];
 
@@ -121,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatQuickOptions.innerHTML = ''; // Sembunyikan opsi cepat saat pengguna mengetik
 
         const lowerCaseMessage = message.toLowerCase();
-        let botResponse = "Maaf, saya tidak mengerti pertanyaan Anda. Bisakah Anda mengulanginya atau pilih salah satu opsi di bawah ini?";
+        let botResponse = "Maaf, Asisten Kang Ipang tidak mengerti pertanyaan Anda. Bisakah Anda mengulanginya atau pilih salah satu opsi di bawah ini?";
         let foundMatch = false;
 
         // Cari jawaban di FAQ
@@ -142,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             addMessage(botResponse, 'bot');
             // Jika bot tidak menemukan jawaban, tawarkan opsi fallback atau opsi cepat
-            if (!foundMatch || botResponse.includes("Maaf, saya tidak mengerti")) {
+            if (!foundMatch || botResponse.includes("Maaf, Asisten Kang Ipang tidak mengerti")) {
                 setTimeout(showQuickOptions, 500); // Tampilkan opsi cepat lagi setelah sedikit delay
             }
         }, 500); // Delay simulasi bot berpikir
@@ -187,6 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     } else {
-        console.error("Chatbot elements not found. Please check your HTML structure.");
+        console.error("Chatbot elements not found. Please check your HTML structure or ensure scripts.js is loaded correctly.");
     }
 });
