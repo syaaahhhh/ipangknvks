@@ -3,7 +3,7 @@
     --primary-color: #a0740a; /* Emas Lembut - Profesional */
     --secondary-color: #f5f5f5; /* Krem/Putih Gading - Bersih */
     --accent-color: #b8860b; /* Emas Lembut - Elegan */
-    --text-color: #333;
+    --text-color: #333; /* Warna teks gelap */
     --light-text-color: #666;
     --white-color: #fff;
     --border-color: #ddd;
@@ -20,7 +20,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Sangat penting untuk responsivitas */
 }
 
 body {
@@ -28,12 +28,13 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     background-color: var(--secondary-color);
+    overflow-x: hidden; /* Mencegah scrollbar horizontal pada body */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 20px; /* Padding samping agar konten tidak menempel ke tepi layar */
 }
 
 a {
@@ -848,13 +849,15 @@ footer {
     nav .nav-links {
         display: none; /* Sembunyikan secara default */
         flex-direction: column;
-        width: 100%;
-        background-color: var(--white-color);
+        width: 100%; /* Mengisi seluruh lebar */
+        background-color: var(--white-color); /* Latar belakang menu mobile putih */
         position: absolute;
         top: 90px; /* Di bawah header */
         left: 0;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         z-index: 999;
+        /* Tambahkan padding agar teks tidak terlalu dekat ke tepi */
+        padding: 10px 0;
     }
 
     nav .nav-links.active {
@@ -871,6 +874,7 @@ footer {
         padding: 15px 0;
         display: block;
         border-bottom: 1px solid var(--border-color);
+        color: var(--text-color); /* Ubah warna teks menjadi gelap agar terlihat di latar putih */
     }
 
     nav .nav-links li:last-child a {
@@ -938,238 +942,33 @@ footer {
     .contact-info {
         padding: 0;
     }
-}
 
-
-/* --- CHATBOT STYLES --- */
-
-/* Container for the floating chatbot button */
-.chatbot-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 10000; /* Pastikan di atas elemen lain */
-}
-
-/* Chatbot toggle button (the floating icon) */
-.chatbot-toggle {
-    background-color: var(--primary-color);
-    color: var(--white-color);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%; /* Membuat lingkaran */
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform var(--transition-speed) ease, background-color var(--transition-speed) ease;
-}
-
-.chatbot-toggle:hover {
-    background-color: var(--accent-color);
-    transform: scale(1.05);
-}
-
-.chatbot-icon {
-    width: 40px; /* Ukuran gambar ikon chatbot */
-    height: 40px;
-    border-radius: 50%; /* Memastikan gambar ikon juga lingkaran */
-    object-fit: cover; /* Memastikan gambar terisi penuh tanpa distorsi */
-}
-
-
-/* Chatbot window itself */
-.chatbot-window {
-    background-color: var(--chatbot-bg-color);
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    width: 350px; /* Lebar jendela chatbot */
-    height: 500px; /* Tinggi jendela chatbot */
-    position: absolute;
-    bottom: 80px; /* Di atas tombol toggle */
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transition: transform var(--transition-speed) ease-out, opacity var(--transition-speed) ease-out;
-    transform: translateY(20px); /* Mulai sedikit ke bawah */
-    opacity: 0;
-    pointer-events: none; /* Nonaktifkan interaksi saat tersembunyi */
-}
-
-.chatbot-window.hidden {
-    transform: translateY(20px) scale(0.95); /* Sedikit efek saat tersembunyi */
-    opacity: 0;
-    pointer-events: none;
-}
-
-.chatbot-window:not(.hidden) {
-    transform: translateY(0) scale(1); /* Kembali normal saat terlihat */
-    opacity: 1;
-    pointer-events: auto; /* Aktifkan interaksi saat terlihat */
-}
-
-
-/* Chatbot Header */
-.chat-header {
-    background-color: var(--chatbot-header-bg);
-    color: var(--white-color);
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.chat-header h3 {
-    color: var(--white-color); /* Pastikan judul header putih */
-    margin: 0;
-    font-size: 1.2em;
-}
-
-.chat-close {
-    background: none;
-    border: none;
-    color: var(--white-color);
-    font-size: 1.8em;
-    cursor: pointer;
-    transition: color var(--transition-speed) ease;
-}
-
-.chat-close:hover {
-    color: #f0f0f0;
-}
-
-
-/* Chat messages area */
-.chat-messages {
-    flex-grow: 1; /* Mengisi ruang yang tersedia */
-    padding: 15px;
-    overflow-y: auto; /* Scroll jika pesan banyak */
-    background-color: #f9f9f9; /* Latar belakang area pesan */
-    display: flex;
-    flex-direction: column;
-}
-
-.chat-message {
-    max-width: 80%;
-    padding: 10px 15px;
-    border-radius: 15px;
-    margin-bottom: 10px;
-    line-height: 1.4;
-    word-wrap: break-word; /* Memastikan teks panjang tidak keluar dari bubble */
-}
-
-.chat-message.bot-message {
-    background-color: var(--chatbot-message-bot-bg);
-    align-self: flex-start; /* Pesan bot di kiri */
-    border-bottom-left-radius: 2px;
-}
-
-.chat-message.user-message {
-    background-color: var(--chatbot-message-user-bg);
-    align-self: flex-end; /* Pesan pengguna di kanan */
-    border-bottom-right-radius: 2px;
-}
-
-.chat-message a {
-    color: var(--primary-color);
-    text-decoration: underline;
-}
-.chat-message a:hover {
-    color: var(--accent-color);
-}
-
-
-/* Chat input area */
-.chat-input-area {
-    display: flex;
-    padding: 10px 15px;
-    border-top: 1px solid var(--border-color);
-    background-color: var(--chatbot-bg-color);
-}
-
-.chat-input-area input {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    font-size: 1em;
-    margin-right: 10px;
-    outline: none;
-}
-
-.chat-send {
-    background-color: var(--chatbot-send-btn-bg);
-    color: var(--white-color);
-    border: none;
-    border-radius: 20px;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background-color var(--transition-speed) ease;
-    font-size: 1em;
-}
-
-.chat-send:hover {
-    background-color: var(--accent-color);
-}
-
-
-/* Quick options buttons */
-.chat-quick-options {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Pusatkan opsi */
-    padding: 10px 15px;
-    background-color: var(--chatbot-bg-color);
-    border-top: 1px solid var(--border-color);
-}
-
-.chat-quick-options .option-button {
-    background-color: var(--chatbot-option-btn-bg);
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
-    padding: 8px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    margin: 5px;
-    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
-    font-size: 0.9em;
-}
-
-.chat-quick-options .option-button:hover {
-    background-color: var(--primary-color);
-    color: var(--white-color);
-}
-
-
-/* Responsive Design for Chatbot */
-@media (max-width: 992px) {
-    .chatbot-window {
-        width: 320px; /* Sedikit lebih kecil di tablet */
-        height: 450px;
-        right: 15px;
-        bottom: 70px;
+    /* Perbaikan untuk menghilangkan scrollbar horizontal */
+    .container {
+        padding: 0 15px; /* Kurangi padding samping di mobile yang sangat kecil */
+    }
+    .client-products .container {
+        padding: 0; /* Hapus padding container jika section sudah punya padding sendiri */
+    }
+    .client-section {
+        border-radius: 0; /* Hapus radius di mobile agar rata tepi */
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .product-grid {
+        gap: 15px; /* Kurangi gap antar produk di mobile */
+    }
+    .product-item {
+        border-radius: 0; /* Hapus radius di mobile agar rata tepi */
+        box-shadow: none; /* Hapus bayangan agar lebih bersih di mobile */
     }
 
-    .chatbot-toggle {
-        width: 50px;
-        height: 50px;
-    }
-
-    .chatbot-icon {
-        width: 35px;
-        height: 35px;
-    }
-}
-
-@media (max-width: 768px) {
+    /* Chatbot Responsiveness Detail */
     .chatbot-container {
-        bottom: 10px;
-        right: 10px;
+        bottom: 10px; /* Jarak dari bawah */
+        right: 10px; /* Jarak dari kanan */
     }
 
     .chatbot-toggle {
@@ -1183,12 +982,13 @@ footer {
     }
 
     .chatbot-window {
-        width: calc(100% - 40px); /* Mengisi hampir seluruh lebar layar dengan margin */
-        max-width: 320px; /* Batasi agar tidak terlalu lebar di layar besar */
+        /* Gunakan max-width untuk mengontrol lebar */
+        max-width: calc(100vw - 30px); /* Lebar maksimum 100% viewport dikurangi margin */
+        width: 320px; /* Default lebar agar tidak terlalu kecil di layar besar */
         height: 400px; /* Lebih pendek di mobile */
         bottom: 70px; /* Di atas tombol toggle */
-        right: 20px;
-        left: auto; /* Untuk memastikan tetap di kanan */
+        right: 0; /* Atur ke 0 agar menyesuaikan max-width */
+        left: auto; /* Memastikan tidak menempel kiri */
     }
 
     .chat-header h3 {
@@ -1210,4 +1010,34 @@ footer {
     }
 }
 
-/* Akhir dari CSS Chatbot */
+/* Tambahan untuk mengatasi overflow pada elemen tertentu */
+/* Pastikan gambar di dalam konten responsif */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Mencegah spasi ekstra di bawah gambar */
+}
+
+/* Pastikan tabel atau elemen dengan lebar tetap di dalamnya di-scroll */
+table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Untuk smooth scrolling di iOS */
+}
+
+/* Memastikan elemen form group tidak menyebabkan overflow */
+.form-group {
+    padding: 0 10px; /* Tambahkan sedikit padding jika diperlukan untuk input */
+}
+
+/* Scrollable map section */
+.google-map {
+    overflow-x: auto; /* Jika iframe Google Maps menyebabkan overflow */
+}
+
+/* Menghilangkan margin negatif atau properti lain yang bisa menyebabkan overflow */
+.features-grid, .product-grid, .process-steps, .values-grid, .footer-grid, .client-logos {
+    padding: 0 15px; /* Tambahkan padding di grid untuk mencegah konten menempel di tepi */
+    /* Untuk .client-logos, pastikan img memiliki max-width: 100% dan flex-wrap */
+}
