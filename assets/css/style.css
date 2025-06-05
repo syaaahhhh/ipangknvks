@@ -1,213 +1,1007 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Navigasi Hamburger Menu
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const headerContent = document.querySelector('.header-content'); 
+/* General Styling */
+:root {
+    --primary-color: #a0740a; /* Emas Lembut - Profesional */
+    --secondary-color: #f5f5f5; /* Krem/Putih Gading - Bersih */
+    --accent-color: #b8860b; /* Emas Lembut - Elegan */
+    --text-color: #333; /* Warna teks gelap untuk kontras di latar terang */
+    --light-text-color: #666;
+    --white-color: #fff;
+    --border-color: #ddd;
+    --transition-speed: 0.3s;
+}
 
-    if (hamburger && navLinks && headerContent) {
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            headerContent.classList.toggle('active'); 
-        });
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Sangat penting untuk responsivitas */
+}
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                hamburger.classList.remove('active');
-                headerContent.classList.remove('active');
-            });
-        });
+body {
+    font-family: 'Poppins', sans-serif; /* Pastikan font ini diimpor atau gunakan font sistem */
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--secondary-color);
+    overflow-x: hidden; /* Mencegah scrollbar horizontal pada body */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Padding samping agar konten tidak menempel ke tepi layar */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+h1, h2, h3, h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h3 {
+    font-size: 1.8em;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--white-color);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.btn-link {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+}
+
+.btn-link:hover {
+    color: var(--accent-color);
+}
+
+section {
+    padding: 80px 0;
+}
+
+/* Header & Navigation */
+header {
+    background-color: var(--primary-color); /* Latar belakang header menjadi primary-color */
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 70px; /* Sesuaikan ukuran logo */
+}
+
+nav .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav .nav-links li {
+    margin-left: 30px;
+}
+
+nav .nav-links li a {
+    color: var(--white-color); /* Warna teks navigasi menjadi putih */
+    font-weight: 500;
+}
+
+nav .nav-links li a:hover {
+    color: var(--accent-color);
+}
+
+/* Styling untuk tombol CTA di header */
+.btn-cta-header {
+    background-color: var(--accent-color); /* Emas Lembut */
+    color: var(--white-color) !important; /* Pastikan teks putih */
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.btn-cta-header:hover {
+    background-color: #a0740a; /* Warna emas sedikit lebih gelap saat hover */
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+}
+
+.hamburger .bar {
+    background-color: var(--white-color); /* Warna bar hamburger menjadi putih */
+    width: 100%;
+    height: 3px;
+    transition: all var(--transition-speed) ease;
+}
+
+/* Hero Section */
+.hero-section {
+    background: url('../images/hero-bg.jpeg') no-repeat center center/cover; /* Ganti dengan gambar hero Anda */
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-color);
+    text-align: center;
+    position: relative;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay gelap */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 3.8em;
+    margin-bottom: 20px;
+    color: var(--white-color);
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.4em;
+    margin-bottom: 40px;
+    color: var(--white-color);
+}
+
+.hero-content .btn {
+    margin: 0 10px;
+}
+
+/* Page Hero (untuk halaman selain homepage) */
+.page-hero {
+    background-color: var(--primary-color); /* Fallback color */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--white-color);
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Pastikan konten hero berada di atas overlay */
+}
+
+.page-hero::before { /* Overlay gelap untuk teks yang lebih mudah dibaca */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Ditingkatkan dari 0.4 menjadi 0.7 untuk kontras yang lebih baik */
+    z-index: -1; /* Pastikan overlay di belakang konten teks */
+}
+
+.page-hero h1,
+.page-hero p,
+.page-hero .hero-logo-large { /* Pastikan semua konten hero berada di atas overlay */
+    position: relative;
+    z-index: 2;
+}
+
+/* Gaya untuk gambar di Hero Section (khusus contact.html) */
+.hero-logo-large {
+    max-width: 200px; /* Sesuaikan ukuran sesuai kebutuhan */
+    height: auto;
+    margin: 0 auto 20px auto; /* Margin bawah untuk memisahkan dari teks */
+    display: block; /* Agar margin auto bekerja untuk centering */
+    border-radius: 8px; /* Sudut sedikit membulat */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Sedikit bayangan */
+}
+
+/* Why Choose Us Section */
+.why-choose-us {
+    background-color: var(--white-color);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.feature-item {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform var(--transition-speed) ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-item i {
+    font-size: 3em;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.feature-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Our Services Overview */
+.our-services-overview {
+    background-color: var(--secondary-color);
+    text-align: center;
+}
+
+.our-services-overview p {
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    font-size: 1.1em;
+}
+
+/* Client Showcase & Product Grid */
+.client-showcase {
+    background-color: var(--white-color);
+    text-align: center;
+}
+
+.client-logos {
+    display: flex;
+    justify-content: center; /* Memastikan logo berada di tengah */
+    flex-wrap: wrap; /* Memungkinkan logo untuk wrap ke baris baru */
+    gap: 40px; /* Jarak antar logo */
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.client-logos img {
+    height: 80px; /* Ukuran logo klien */
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all var(--transition-speed) ease;
+    flex-shrink: 0; /* Mencegah gambar mengecil lebih dari ukuran aslinya */
+}
+
+.client-logos img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.product-item {
+    background-color: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    transition: transform var(--transition-speed) ease;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+}
+
+.product-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.product-item h4 {
+    font-size: 1.2em;
+    margin: 15px 15px 5px 15px;
+    height: 3.6em; /* Untuk konsistensi tinggi judul */
+    overflow: hidden;
+}
+
+.product-item p {
+    font-size: 1.1em;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin: 0 15px 15px 15px;
+}
+
+.product-item .btn-link {
+    display: block;
+    margin: 0 15px 15px 15px;
+    text-align: right;
+    padding: 0;
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+.product-item .btn-link:hover {
+    text-decoration: underline;
+}
+
+.disclaimer {
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: var(--light-text-color);
+}
+
+/* Ipang Konveksi Collection Preview */
+.ipang-konveksi-collection-preview {
+    background-color: var(--secondary-color);
+    text-align: center;
+}
+
+/* Contact CTA Section */
+.contact-cta {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    text-align: center;
+    padding: 60px 0;
+}
+
+.contact-cta h2 {
+    color: var(--white-color);
+    margin-bottom: 20px;
+}
+
+.contact-cta p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: #eee;
+    padding: 60px 0 20px 0;
+    font-size: 0.95em;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-col h3 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 1.3em;
+}
+
+.footer-col p, .footer-col ul, .footer-col li {
+    color: #bbb;
+    margin-bottom: 10px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li a {
+    color: #bbb;
+}
+
+.footer-col ul li a:hover {
+    color: var(--white-color);
+}
+
+/* Pastikan tautan di footer berwarna putih */
+.footer-col p a {
+    color: var(--white-color); /* Mengatur warna tautan di dalam paragraf footer menjadi putih */
+}
+
+.footer-col p a:hover {
+    color: var(--accent-color); /* Opsional: Mengubah warna saat di-hover menjadi emas lembut */
+}
+
+/* Jika ada tautan sosial media di footer yang juga ingin dipastikan putih */
+.footer-col .social-links a {
+    color: var(--white-color);
+}
+
+.footer-col .social-links a:hover {
+    color: var(--accent-color);
+}
+
+.social-links a {
+    color: var(--white-color);
+    font-size: 1.5em;
+    margin-right: 15px;
+    transition: color var(--transition-speed) ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #bbb;
+}
+
+/* Specific Page Styling */
+
+/* Services Page */
+.service-details .service-item {
+    background-color: var(--white-color);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.service-details .service-item h3 {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.process-section {
+    background-color: var(--white-color);
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.step-item {
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.step-item i {
+    font-size: 3.5em;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.step-item h3 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+
+/* Portfolio Page */
+.portfolio-gallery {
+    background-color: var(--secondary-color);
+}
+
+.filter-buttons {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.filter-buttons .btn {
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    border: 1px solid var(--border-color);
+    margin: 5px;
+    cursor: pointer;
+}
+
+.filter-buttons .btn.active,
+.filter-buttons .btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-color: var(--primary-color);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 300px; /* Fixed height for consistency */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(var(--primary-color), 0.8); /* Dark overlay */
+    color: var(--white-color);
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .overlay {
+    transform: translateY(0);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-item .overlay h4 {
+    color: var(--white-color);
+    margin-bottom: 5px;
+}
+
+.gallery-item .overlay p {
+    font-size: 0.9em;
+    color: #eee;
+}
+
+/* Clients Page */
+.client-products {
+    background-color: var(--secondary-color);
+}
+
+.client-section {
+    background-color: var(--white-color);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.client-logo-large {
+    max-height: 120px; /* Ukuran logo klien di halaman klien */
+    margin-bottom: 20px;
+}
+
+.client-section h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.client-section p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* About Page */
+.about-content {
+    background-color: var(--white-color);
+}
+
+.about-content h2 {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.about-content p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.about-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.about-content ul li {
+    margin-bottom: 10px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.value-item {
+    background-color: var(--secondary-color);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.value-item i {
+    font-size: 2.5em;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.value-item h3 {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+}
+
+/* Contact Page */
+.contact-section {
+    background-color: var(--white-color);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.contact-form {
+    background-color: var(--secondary-color);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.contact-form button.btn-primary {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+}
+
+.contact-info {
+    padding: 20px;
+}
+
+.contact-info h2 {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.contact-info p i {
+    font-size: 1.2em;
+    color: var(--accent-color);
+    margin-right: 15px;
+    margin-top: 3px; /* Untuk alignment ikon yang lebih baik */
+}
+
+.contact-info ul {
+    list-style: none;
+    margin-left: 35px; /* Mengikuti indentasi ikon */
+}
+.contact-info ul li {
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.contact-info .social-links {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.contact-info .social-links a {
+    margin-right: 20px;
+    font-size: 1.3em;
+    color: var(--primary-color);
+}
+
+.contact-info .social-links a:hover {
+    color: var(--accent-color);
+}
+
+.map-container {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    h1 {
+        font-size: 2.5em;
     }
 
-    // --- Fungsionalitas Chatbot "Asisten Kang Ipang" ---
-
-    // Mengambil referensi elemen-elemen chatbot dari HTML berdasarkan ID mereka.
-    // Penting: Pastikan ID ini PERSIS sama di file HTML Anda.
-    const chatbotToggle = document.getElementById('chatbot-toggle');
-    const chatbotWindow = document.getElementById('chatbot-window');
-    const chatCloseButton = document.getElementById('chat-close');
-    const chatMessages = document.getElementById('chat-messages');
-    const chatInput = document.getElementById('chat-input');
-    const chatSendButton = document.getElementById('chat-send');
-    const chatQuickOptions = document.getElementById('chat-quick-options');
-
-    // TEST INI UNTUK MEMASTIKAN JS BERJALAN DAN ELEMEN DITEMUKAN
-    // Jika Anda tidak melihat pesan ini di Console, berarti ada masalah lebih awal.
-    if (chatbotToggle && chatbotWindow) {
-        console.log("Chatbot elements found! JavaScript is likely running.");
-    } else {
-        console.error("ERROR: Chatbot elements NOT found. Check HTML IDs or script loading.");
+    h2 {
+        font-size: 2em;
     }
 
-    // Data Pertanyaan dan Jawaban Umum (FAQ) untuk bot
-    const faqData = [
-        {
-            keywords: ['layanan', 'maklun', 'jasa', 'apa saja'],
-            answer: "Ipangkonveksi menyediakan jasa Pola & Potong, Jahit Konveksi, Sablon/Bordir, dan Produksi Lengkap (Full Package). Anda bisa melihat detailnya di halaman <a href='services.html'>Layanan Maklun</a>."
-        },
-        {
-            keywords: ['alamat', 'lokasi', 'dimana', 'tempat'],
-            answer: "Kami berlokasi di Rancapanjang RT03/RW04 Desa. Sukamulya Kec. Rancaekek Kab. Bandung 40394. Anda bisa melihatnya di <a href='contact.html#map-section'>Peta Lokasi</a>."
-        },
-        {
-            keywords: ['pesan', 'pemesanan', 'cara pesan', 'order'],
-            answer: "Anda bisa memulai proyek dengan menghubungi tim kami melalui WhatsApp atau mengisi formulir di halaman <a href='contact.html'>Kontak</a>. Kami akan memandu Anda melalui prosesnya!"
-        },
-        {
-            keywords: ['custom', 'desain'],
-            answer: "Ya, tentu saja! Kami menerima custom desain sesuai kebutuhan brand Anda. Tim kami akan membantu Anda dalam tahap pengembangan desain hingga produksi."
-        },
-        {
-            keywords: ['lama produksi', 'estimasi', 'berapa lama'],
-            answer: "Estimasi waktu produksi bervariasi tergantung jenis produk dan kuantitas pesanan. Untuk estimasi lebih akurat, silakan sampaikan detail pesanan Anda kepada kami."
-        },
-        {
-            keywords: ['sylna hijab', 'sylna', 'koleksi', 'brand'],
-            answer: "Sylna Hijab adalah brand eksklusif Ipangkonveksi yang menghadirkan koleksi busana muslim dan hijab berkualitas tinggi. Anda bisa melihat koleksinya di halaman <a href='products.html'>Koleksi Kami</a>."
-        },
-        {
-            keywords: ['contoh produk', 'portofolio', 'hasil produksi', 'klien'],
-            answer: "Tentu! Anda bisa melihat beberapa contoh produk yang pernah kami kerjakan dan klien kami di halaman <a href='clients.html'>Klien Kami</a>."
-        },
-        {
-            keywords: ['terima kasih', 'makasih', 'oke'],
-            answer: "Sama-sama! Ada lagi yang bisa Asisten Kang Ipang bantu?"
-        },
-        {
-            keywords: ['halo', 'hai', 'hi', 'salam'],
-            answer: "Halo juga! Senang bisa membantu Anda. Ada pertanyaan seputar layanan kami?"
-        },
-        {
-            keywords: ['tim', 'hubungi', 'whatsapp', 'email', 'kontak'],
-            answer: "Tentu, Anda bisa menghubungi tim kami melalui WhatsApp di <a href='https://wa.me/62881023706063' target='_blank'>0881-0237-06063</a> atau mengisi formulir di halaman <a href='contact.html'>Kontak</a>."
-        },
-        {
-            keywords: ['tentang kami', 'profil', 'sejarah'],
-            answer: "Ipangkonveksi adalah mitra maklun konveksi terkemuka di Bandung, berkomitmen pada kualitas dan presisi jahitan. Didirikan dengan fokus pada kepuasan klien dan kualitas terbaik. Selengkapnya di halaman <a href='about.html'>Tentang Kami</a>."
-        }
-    ];
-
-    // Opsi Cepat untuk tombol-tombol yang muncul di chat
-    const quickOptions = [
-        { text: "Layanan Maklun", value: "layanan maklun" },
-        { text: "Koleksi Kami", value: "sylna hijab" },
-        { text: "Tentang Ipangkonveksi", value: "tentang kami" },
-        { text: "Hubungi Tim", value: "hubungi tim" },
-        { text: "Lokasi Kami", value: "alamat" }
-    ];
-
-    // Fungsi untuk menambahkan pesan ke jendela chat (baik dari bot maupun pengguna)
-    function addMessage(text, sender) {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('chat-message');
-        if (sender === 'bot') {
-            messageElement.classList.add('bot-message');
-            // Menggunakan innerHTML agar tautan HTML bisa dirender
-            messageElement.innerHTML = text;
-        } else {
-            messageElement.classList.add('user-message');
-            // Menggunakan textContent untuk mencegah injeksi HTML dari input pengguna
-            messageElement.textContent = text;
-        }
-        chatMessages.appendChild(messageElement);
-        // Otomatis scroll ke bawah agar pesan terbaru terlihat
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+    .hero-content h1 {
+        font-size: 3em;
     }
 
-    // Fungsi untuk menampilkan tombol-tombol opsi cepat
-    function showQuickOptions() {
-        chatQuickOptions.innerHTML = ''; // Bersihkan opsi sebelumnya
-        quickOptions.forEach(option => {
-            const button = document.createElement('button');
-            button.classList.add('option-button');
-            button.textContent = option.text;
-            button.addEventListener('click', () => {
-                // Saat tombol opsi cepat diklik, proses seperti pesan pengguna
-                handleUserMessage(option.value);
-                chatQuickOptions.innerHTML = ''; // Sembunyikan opsi setelah diklik
-            });
-            chatQuickOptions.appendChild(button);
-        });
+    /* Modifikasi untuk menu navigasi mobile */
+    nav .nav-links {
+        display: none; /* Sembunyikan secara default */
+        flex-direction: column;
+        width: 100%; /* Mengisi seluruh lebar */
+        background-color: var(--white-color); /* Latar belakang menu mobile putih */
+        position: absolute;
+        top: 90px; /* Di bawah header */
+        left: 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        padding: 10px 0; /* Tambahkan padding agar teks tidak terlalu dekat ke tepi */
     }
 
-    // Fungsi utama untuk memproses pesan yang dikirim pengguna
-    function handleUserMessage(message) {
-        addMessage(message, 'user'); // Tampilkan pesan pengguna di chat
-        chatInput.value = ''; // Kosongkan area input
-        chatQuickOptions.innerHTML = ''; // Sembunyikan opsi cepat saat pengguna mengetik/mengirim pesan
-
-        const lowerCaseMessage = message.toLowerCase();
-        let botResponse = "Maaf, Asisten Kang Ipang tidak mengerti pertanyaan Anda. Bisakah Anda mengulanginya atau pilih salah satu opsi di bawah ini?";
-        let foundMatch = false;
-
-        // Iterasi melalui data FAQ untuk mencari kata kunci yang cocok
-        for (const faq of faqData) {
-            for (const keyword of faq.keywords) {
-                // Periksa apakah pesan pengguna mengandung kata kunci
-                if (lowerCaseMessage.includes(keyword)) {
-                    botResponse = faq.answer;
-                    foundMatch = true;
-                    break; // Keluar dari loop keyword setelah menemukan kecocokan
-                }
-            }
-            if (foundMatch) {
-                break; // Keluar dari loop faqData setelah menemukan kecocokan
-            }
-        }
-
-        // Tampilkan jawaban bot setelah sedikit delay untuk simulasi "berpikir"
-        setTimeout(() => {
-            addMessage(botResponse, 'bot');
-            // Jika bot tidak menemukan jawaban yang spesifik, tampilkan lagi opsi cepat
-            if (!foundMatch || botResponse.includes("Maaf, Asisten Kang Ipang tidak mengerti")) {
-                setTimeout(showQuickOptions, 500); // Tampilkan opsi cepat lagi setelah sedikit delay
-            }
-        }, 500); 
+    nav .nav-links.active {
+        display: flex; /* Tampilkan saat aktif */
     }
 
-    // Mengatur Event Listeners untuk interaksi chatbot
-    // Memastikan semua elemen ada sebelum menambahkan event listener
-    if (chatbotToggle && chatbotWindow && chatCloseButton && chatMessages && chatInput && chatSendButton && chatQuickOptions) {
-        // Event listener untuk tombol toggle (membuka/menutup chatbot)
-        chatbotToggle.addEventListener('click', () => {
-            chatbotWindow.classList.toggle('hidden'); // Mengubah visibilitas jendela chat
-            if (!chatbotWindow.classList.contains('hidden')) {
-                // Sapaan awal dan opsi cepat saat chat dibuka
-                setTimeout(() => {
-                    addMessage("Halo! Selamat datang di Ipangkonveksi. Saya Asisten Kang Ipang, ada yang bisa saya bantu?", 'bot');
-                }, 300); // Delay sapaan awal
-                setTimeout(showQuickOptions, 1000); // Tampilkan opsi cepat setelah sapaan
-            } else {
-                // Bersihkan chat dan opsi saat ditutup
-                chatMessages.innerHTML = '';
-                chatQuickOptions.innerHTML = '';
-            }
-        });
-
-        // Event listener untuk tombol tutup chat (di dalam jendela chat)
-        chatCloseButton.addEventListener('click', () => {
-            chatbotWindow.classList.add('hidden'); // Sembunyikan jendela chat
-            chatMessages.innerHTML = ''; // Bersihkan pesan saat ditutup
-            chatQuickOptions.innerHTML = ''; // Bersihkan opsi saat ditutup
-        });
-
-        // Event listener untuk tombol kirim pesan
-        chatSendButton.addEventListener('click', () => {
-            const message = chatInput.value.trim(); // Ambil teks dari input
-            if (message) {
-                handleUserMessage(message); // Proses pesan jika tidak kosong
-            }
-        });
-
-        // Event listener untuk input field (mendengarkan tombol Enter)
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                chatSendButton.click(); // Picu klik tombol kirim saat Enter ditekan
-            }
-        });
-    } else {
-        // Pesan error di console jika ada elemen HTML chatbot yang tidak ditemukan
-        console.error("Chatbot elements not found. Please check your HTML structure or ensure scripts.js is loaded correctly.");
+    nav .nav-links li {
+        margin: 0;
+        text-align: center;
+        width: 100%;
     }
-});
+
+    nav .nav-links li a {
+        padding: 15px 0;
+        display: block;
+        border-bottom: 1px solid var(--border-color);
+        color: var(--text-color); /* Ubah warna teks menjadi gelap agar terlihat di latar putih */
+    }
+
+    nav .nav-links li:last-child a {
+        border-bottom: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    /* Aturan untuk menyembunyikan tombol CTA di header saat menu mobile aktif */
+    .header-content.active .btn-cta-header {
+        display: none;
+    }
+
+    .features-grid,
+    .product-grid,
+    .process-steps,
+    .values-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .hero-content .btn {
+        display: block;
+        margin: 15px auto;
+    }
+
+    .client-logos {
+        gap: 20px;
+    }
+
+    /* Sesuaikan ukuran gambar di hero pada mobile */
+    .hero-logo-large {
+        max-width: 150px; /* Lebih kecil di mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+    .hero-content p {
+        font-size: 1.1em;
+    }
+    section {
+        padding: 60px 0;
+    }
+    .client-section {
+        padding: 25px;
+    }
+    .contact-form {
+        padding: 25px;
+    }
+    .contact-info {
+        padding: 0;
+    }
+
+    /* Perbaikan untuk menghilangkan scrollbar horizontal */
+    .container {
+        padding: 0 15px; /* Kurangi padding samping di mobile yang sangat kecil */
+    }
+    /* Hapus padding container jika section sudah punya padding sendiri agar tidak dobel */
+    .client-products .container {
+        padding: 0;
+    }
+    .client-section {
+        border-radius: 0; /* Hapus radius di mobile agar rata tepi */
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 15px; /* Tambahkan padding langsung ke client-section */
+        padding-right: 15px;
+    }
+    .product-grid {
+        gap: 15px; /* Kurangi gap antar produk di mobile */
+    }
+    .product-item {
+        border-radius: 0; /* Hapus radius di mobile agar rata tepi */
+        box-shadow: none; /* Hapus bayangan agar lebih bersih di mobile */
+    }
+
+    /* Tambahan untuk mengatasi overflow pada elemen tertentu (SANGAT PENTING!) */
+    /* Pastikan gambar di dalam konten responsif */
+    img {
+        max-width: 100%; /* Memastikan gambar tidak melebihi lebar kontainer */
+        height: auto;
+        display: block; /* Mencegah spasi ekstra di bawah gambar */
+    }
+
+    /* Pastikan tabel atau elemen dengan lebar tetap di dalamnya di-scroll */
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto; /* Memungkinkan scroll horizontal jika isi terlalu lebar */
+        -webkit-overflow-scrolling: touch; /* Untuk smooth scrolling di iOS */
+    }
+
+    /* Memastikan elemen form group tidak menyebabkan overflow, terutama pada input lebar penuh */
+    .form-group {
+        width: 100%;
+        /* Tidak perlu padding di sini jika input sudah punya padding */
+    }
+
+    /* Scrollable map section */
+    .google-map {
+        overflow-x: auto; /* Jika iframe Google Maps menyebabkan overflow */
+        max-width: 100%; /* Pastikan kontainer peta tidak melebihi lebar */
+    }
+
+    /* Menghilangkan margin negatif atau properti lain yang bisa menyebabkan overflow */
+    .features-grid, .product-grid, .process-steps, .values-grid, .footer-grid, .client-logos {
+        /* Hapus margin negatif atau properti yang bisa menyebabkan overflow */
+        /* Pastikan padding sudah ditangani oleh .container atau media query */
+    }
+
+    /* Memastikan elemen flexbox tidak menyebabkan overflow saat wrap */
+    .client-logos {
+        justify-content: center; /* Pusatkan logo */
+        gap: 10px; /* Kurangi gap untuk mobile agar tidak terlalu lebar */
+    }
+
+    .client-logos img {
+        flex-shrink: 0; /* Penting: mencegah gambar mengecil terlalu banyak */
+        width: auto;
+        max-width: 100px; /* Batasi lebar maksimum setiap logo di mobile */
+    }
+}
