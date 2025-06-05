@@ -965,35 +965,34 @@ footer {
         box-shadow: none; /* Hapus bayangan agar lebih bersih di mobile */
     }
 
-   /* --- KRITIKAL: CHATBOT STYLES UNTUK MOBILE --- */
-.chatbot-container {
-    position: fixed !important; /* Pastikan posisi tetap relatif terhadap viewport */
-    bottom: 10px !important; /* Jarak dari bawah */
-    right: 10px !important; /* Jarak dari kanan */
-    left: auto !important;   /* Pastikan tidak menempel ke kiri */
-    top: auto !important;    /* Pastikan tidak menempel ke atas */
-    transform: none !important; /* Hapus transformasi yang mungkin mengganggu positioning */
-}
+    /* --- KRITIKAL: CHATBOT STYLES UNTUK MOBILE --- */
+    .chatbot-container {
+        position: fixed !important; /* Pastikan posisi tetap relatif terhadap viewport */
+        bottom: 10px !important; /* Jarak dari bawah */
+        right: 10px !important; /* Jarak dari kanan */
+        left: auto !important;   /* Pastikan tidak menempel ke kiri */
+        top: auto !important;    /* Pastikan tidak menempel ke atas */
+        transform: none !important; /* Hapus transformasi yang mungkin mengganggu positioning */
+    }
 
-.chatbot-toggle {
-    width: 50px; /* Ukuran lebih kecil di mobile */
-    height: 50px;
-}
+    .chatbot-toggle {
+        width: 50px; /* Ukuran lebih kecil di mobile */
+        height: 50px;
+    }
 
-.chatbot-icon {
-    width: 30px;
-    height: 30px;
-}
+    .chatbot-icon {
+        width: 30px;
+        height: 30px;
+    }
 
-.chatbot-window {
-    /* Menggunakan max-width dan width: 100% untuk kontrol lebih baik */
-    max-width: calc(100vw - 20px); /* Maks lebar 100% viewport dikurangi margin total 20px */
-    width: 320px; /* Default lebar agar tidak terlalu kecil di layar besar, ini akan dibatasi oleh max-width */
-    height: 400px; /* Lebih pendek di mobile */
-    bottom: 70px; /* Di atas tombol toggle */
-    right: 0; /* Tetap 0, max-width akan mengatur */
-    left: auto; /* Untuk memastikan tetap di kanan */
-}
+    .chatbot-window {
+        /* Menggunakan max-width dan width: 100% untuk kontrol lebih baik */
+        max-width: calc(100vw - 20px); /* Maks lebar 100% viewport dikurangi margin total 20px */
+        width: 320px; /* Default lebar agar tidak terlalu kecil di layar besar, ini akan dibatasi oleh max-width */
+        height: 400px; /* Lebih pendek di mobile */
+        bottom: 70px; /* Di atas tombol toggle */
+        right: 0; /* Tetap 0, max-width akan mengatur */
+        left: auto; /* Untuk memastikan tetap di kanan */
     }
 
     .chat-header h3 {
