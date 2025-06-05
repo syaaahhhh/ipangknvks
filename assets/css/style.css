@@ -20,7 +20,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Sangat penting untuk responsivitas dan mencegah overflow */
+    box-sizing: border-box; /* Sangat penting untuk responsivitas */
 }
 
 body {
@@ -856,8 +856,7 @@ footer {
         left: 0;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         z-index: 999;
-        /* Tambahkan padding agar teks tidak terlalu dekat ke tepi */
-        padding: 10px 0;
+        padding: 10px 0; /* Tambahkan padding agar teks tidak terlalu dekat ke tepi */
     }
 
     nav .nav-links.active {
@@ -966,13 +965,14 @@ footer {
         box-shadow: none; /* Hapus bayangan agar lebih bersih di mobile */
     }
 
-    /* Chatbot Responsiveness Detail (DIUBAH) */
+    /* --- KRITIKAL: CHATBOT STYLES UNTUK MOBILE --- */
     .chatbot-container {
-        bottom: 10px !important; /* Jarak dari bawah, pakai !important */
-        right: 10px !important; /* Jarak dari kanan, pakai !important */
+        position: fixed !important; /* Pastikan posisi tetap relatif terhadap viewport */
+        bottom: 10px !important; /* Jarak dari bawah */
+        right: 10px !important; /* Jarak dari kanan */
         left: auto !important;   /* Pastikan tidak menempel ke kiri */
         top: auto !important;    /* Pastikan tidak menempel ke atas */
-        position: fixed !important; /* Pastikan posisi tetap */
+        transform: none !important; /* Hapus transformasi yang mungkin mengganggu positioning */
     }
 
     .chatbot-toggle {
