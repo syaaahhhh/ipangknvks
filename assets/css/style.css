@@ -3,7 +3,7 @@
     --primary-color: #a0740a; /* Emas Lembut - Profesional */
     --secondary-color: #f5f5f5; /* Krem/Putih Gading - Bersih */
     --accent-color: #b8860b; /* Emas Lembut - Elegan */
-    --text-color: #333; /* Warna teks gelap */
+    --text-color: #333; /* Warna teks gelap untuk kontras di latar terang */
     --light-text-color: #666;
     --white-color: #fff;
     --border-color: #ddd;
@@ -20,7 +20,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Sangat penting untuk responsivitas */
+    box-sizing: border-box; /* Sangat penting untuk responsivitas dan mencegah overflow */
 }
 
 body {
@@ -947,14 +947,15 @@ footer {
     .container {
         padding: 0 15px; /* Kurangi padding samping di mobile yang sangat kecil */
     }
+    /* Hapus padding container jika section sudah punya padding sendiri agar tidak dobel */
     .client-products .container {
-        padding: 0; /* Hapus padding container jika section sudah punya padding sendiri */
+        padding: 0;
     }
     .client-section {
         border-radius: 0; /* Hapus radius di mobile agar rata tepi */
         margin-left: 0;
         margin-right: 0;
-        padding-left: 15px;
+        padding-left: 15px; /* Tambahkan padding langsung ke client-section */
         padding-right: 15px;
     }
     .product-grid {
@@ -965,10 +966,13 @@ footer {
         box-shadow: none; /* Hapus bayangan agar lebih bersih di mobile */
     }
 
-    /* Chatbot Responsiveness Detail */
+    /* Chatbot Responsiveness Detail (DIUBAH) */
     .chatbot-container {
-        bottom: 10px; /* Jarak dari bawah */
-        right: 10px; /* Jarak dari kanan */
+        bottom: 10px !important; /* Jarak dari bawah, pakai !important */
+        right: 10px !important; /* Jarak dari kanan, pakai !important */
+        left: auto !important;   /* Pastikan tidak menempel ke kiri */
+        top: auto !important;    /* Pastikan tidak menempel ke atas */
+        position: fixed !important; /* Pastikan posisi tetap */
     }
 
     .chatbot-toggle {
@@ -982,13 +986,13 @@ footer {
     }
 
     .chatbot-window {
-        /* Gunakan max-width untuk mengontrol lebar */
-        max-width: calc(100vw - 30px); /* Lebar maksimum 100% viewport dikurangi margin */
-        width: 320px; /* Default lebar agar tidak terlalu kecil di layar besar */
+        /* Menggunakan max-width dan width: 100% untuk kontrol lebih baik */
+        max-width: calc(100vw - 20px); /* Maks lebar 100% viewport dikurangi margin total 20px */
+        width: 320px; /* Default lebar agar tidak terlalu kecil di layar besar, ini akan dibatasi oleh max-width */
         height: 400px; /* Lebih pendek di mobile */
         bottom: 70px; /* Di atas tombol toggle */
-        right: 0; /* Atur ke 0 agar menyesuaikan max-width */
-        left: auto; /* Memastikan tidak menempel kiri */
+        right: 0; /* Tetap 0, max-width akan mengatur */
+        left: auto; /* Untuk memastikan tetap di kanan */
     }
 
     .chat-header h3 {
@@ -1010,10 +1014,10 @@ footer {
     }
 }
 
-/* Tambahan untuk mengatasi overflow pada elemen tertentu */
+/* Tambahan untuk mengatasi overflow pada elemen tertentu (SANGAT PENTING!) */
 /* Pastikan gambar di dalam konten responsif */
 img {
-    max-width: 100%;
+    max-width: 100%; /* Memastikan gambar tidak melebihi lebar kontainer */
     height: auto;
     display: block; /* Mencegah spasi ekstra di bawah gambar */
 }
@@ -1022,22 +1026,36 @@ img {
 table {
     width: 100%;
     display: block;
-    overflow-x: auto;
+    overflow-x: auto; /* Memungkinkan scroll horizontal jika isi terlalu lebar */
     -webkit-overflow-scrolling: touch; /* Untuk smooth scrolling di iOS */
 }
 
-/* Memastikan elemen form group tidak menyebabkan overflow */
+/* Memastikan elemen form group tidak menyebabkan overflow, terutama pada input lebar penuh */
 .form-group {
-    padding: 0 10px; /* Tambahkan sedikit padding jika diperlukan untuk input */
+    width: 100%;
+    /* Tidak perlu padding di sini jika input sudah punya padding */
 }
 
 /* Scrollable map section */
 .google-map {
     overflow-x: auto; /* Jika iframe Google Maps menyebabkan overflow */
+    max-width: 100%; /* Pastikan kontainer peta tidak melebihi lebar */
 }
 
 /* Menghilangkan margin negatif atau properti lain yang bisa menyebabkan overflow */
 .features-grid, .product-grid, .process-steps, .values-grid, .footer-grid, .client-logos {
-    padding: 0 15px; /* Tambahkan padding di grid untuk mencegah konten menempel di tepi */
-    /* Untuk .client-logos, pastikan img memiliki max-width: 100% dan flex-wrap */
+    /* Hapus margin negatif atau properti yang bisa menyebabkan overflow */
+    /* Pastikan padding sudah ditangani oleh .container atau media query */
+}
+
+/* Memastikan elemen flexbox tidak menyebabkan overflow saat wrap */
+.client-logos {
+    justify-content: center; /* Pusatkan logo */
+    gap: 10px; /* Kurangi gap untuk mobile agar tidak terlalu lebar */
+}
+
+.client-logos img {
+    flex-shrink: 0; /* Penting: mencegah gambar mengecil terlalu banyak */
+    width: auto;
+    max-width: 100px; /* Batasi lebar maksimum setiap logo di mobile */
 }
