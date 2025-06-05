@@ -979,11 +979,20 @@ footer {
     .chatbot-toggle {
         width: 55px !important; /* Ukuran ikon chatbot yang sedikit lebih besar */
         height: 55px !important;
+        background-color: var(--accent-color) !important; /* Tambahkan warna latar belakang untuk debugging */
+        border-radius: 50% !important; /* Pastikan bulat sempurna */
+        display: flex !important; /* Mengaktifkan flex untuk centering ikon */
+        justify-content: center !important;
+        align-items: center !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important; /* Tambah bayangan */
+        border: none !important; /* Hapus border bawaan */
+        cursor: pointer !important; /* Indikator interaksi */
     }
 
     .chatbot-icon {
         width: 35px !important; /* Ukuran gambar ikon yang sesuai */
         height: 35px !important;
+        object-fit: contain !important; /* Pastikan gambar tidak terdistorsi */
     }
 
     .chatbot-window {
