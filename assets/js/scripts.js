@@ -1,17 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Navigasi Hamburger Menu (sudah ada sebelumnya)
+    // Navigasi Hamburger Menu
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
-    const headerContent = document.querySelector('.header-content'); // Ambil elemen header-content
+    const headerContent = document.querySelector('.header-content'); 
 
     if (hamburger && navLinks && headerContent) {
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             hamburger.classList.toggle('active');
-            headerContent.classList.toggle('active'); // Toggle class 'active' pada header-content
+            headerContent.classList.toggle('active'); 
         });
 
-        // Close nav menu when a link is clicked (for single-page scroll or general ux)
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -23,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Fungsionalitas Chatbot "Asisten Kang Ipang" ---
 
-    // Pastikan semua elemen chatbot ditemukan sebelum mencoba menggunakannya
+    // Mengambil referensi elemen-elemen chatbot dari HTML berdasarkan ID mereka.
+    // Penting: Pastikan ID ini PERSIS sama di file HTML Anda.
     const chatbotToggle = document.getElementById('chatbot-toggle');
     const chatbotWindow = document.getElementById('chatbot-window');
     const chatCloseButton = document.getElementById('chat-close');
@@ -32,7 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatSendButton = document.getElementById('chat-send');
     const chatQuickOptions = document.getElementById('chat-quick-options');
 
-    // FAQ data (Pertanyaan dan Jawaban)
+    // TEST INI UNTUK MEMASTIKAN JS BERJALAN DAN ELEMEN DITEMUKAN
+    // Jika Anda tidak melihat pesan ini di Console, berarti ada masalah lebih awal.
+    if (chatbotToggle && chatbotWindow) {
+        console.log("Chatbot elements found! JavaScript is likely running.");
+    } else {
+        console.error("ERROR: Chatbot elements NOT found. Check HTML IDs or script loading.");
+    }
+
+    // Data Pertanyaan dan Jawaban Umum (FAQ) untuk bot
     const faqData = [
         {
             keywords: ['layanan', 'maklun', 'jasa', 'apa saja'],
@@ -80,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // Opsi Cepat (untuk tombol-tombol)
+    // Opsi Cepat untuk tombol-tombol yang muncul di chat
     const quickOptions = [
         { text: "Layanan Maklun", value: "layanan maklun" },
         { text: "Koleksi Kami", value: "sylna hijab" },
@@ -89,22 +97,25 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: "Lokasi Kami", value: "alamat" }
     ];
 
-    // Fungsi untuk menambahkan pesan ke jendela chat
+    // Fungsi untuk menambahkan pesan ke jendela chat (baik dari bot maupun pengguna)
     function addMessage(text, sender) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('chat-message');
         if (sender === 'bot') {
             messageElement.classList.add('bot-message');
-            messageElement.innerHTML = text; // Gunakan innerHTML untuk tautan
+            // Menggunakan innerHTML agar tautan HTML bisa dirender
+            messageElement.innerHTML = text;
         } else {
             messageElement.classList.add('user-message');
+            // Menggunakan textContent untuk mencegah injeksi HTML dari input pengguna
             messageElement.textContent = text;
         }
         chatMessages.appendChild(messageElement);
-        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll ke bawah
+        // Otomatis scroll ke bawah agar pesan terbaru terlihat
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    // Fungsi untuk menampilkan opsi cepat
+    // Fungsi untuk menampilkan tombol-tombol opsi cepat
     function showQuickOptions() {
         chatQuickOptions.innerHTML = ''; // Bersihkan opsi sebelumnya
         quickOptions.forEach(option => {
@@ -112,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             button.classList.add('option-button');
             button.textContent = option.text;
             button.addEventListener('click', () => {
+                // Saat tombol opsi cepat diklik, proses seperti pesan pengguna
                 handleUserMessage(option.value);
                 chatQuickOptions.innerHTML = ''; // Sembunyikan opsi setelah diklik
             });
@@ -119,44 +131,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Fungsi untuk memproses pesan pengguna
+    // Fungsi utama untuk memproses pesan yang dikirim pengguna
     function handleUserMessage(message) {
-        addMessage(message, 'user');
-        chatInput.value = ''; // Kosongkan input
-        chatQuickOptions.innerHTML = ''; // Sembunyikan opsi cepat saat pengguna mengetik
+        addMessage(message, 'user'); // Tampilkan pesan pengguna di chat
+        chatInput.value = ''; // Kosongkan area input
+        chatQuickOptions.innerHTML = ''; // Sembunyikan opsi cepat saat pengguna mengetik/mengirim pesan
 
         const lowerCaseMessage = message.toLowerCase();
         let botResponse = "Maaf, Asisten Kang Ipang tidak mengerti pertanyaan Anda. Bisakah Anda mengulanginya atau pilih salah satu opsi di bawah ini?";
         let foundMatch = false;
 
-        // Cari jawaban di FAQ
+        // Iterasi melalui data FAQ untuk mencari kata kunci yang cocok
         for (const faq of faqData) {
             for (const keyword of faq.keywords) {
+                // Periksa apakah pesan pengguna mengandung kata kunci
                 if (lowerCaseMessage.includes(keyword)) {
                     botResponse = faq.answer;
                     foundMatch = true;
-                    break; // Keluar dari loop keyword
+                    break; // Keluar dari loop keyword setelah menemukan kecocokan
                 }
             }
             if (foundMatch) {
-                break; // Keluar dari loop faqData
+                break; // Keluar dari loop faqData setelah menemukan kecocokan
             }
         }
 
-        // Tampilkan jawaban bot
+        // Tampilkan jawaban bot setelah sedikit delay untuk simulasi "berpikir"
         setTimeout(() => {
             addMessage(botResponse, 'bot');
-            // Jika bot tidak menemukan jawaban, tawarkan opsi fallback atau opsi cepat
+            // Jika bot tidak menemukan jawaban yang spesifik, tampilkan lagi opsi cepat
             if (!foundMatch || botResponse.includes("Maaf, Asisten Kang Ipang tidak mengerti")) {
                 setTimeout(showQuickOptions, 500); // Tampilkan opsi cepat lagi setelah sedikit delay
             }
-        }, 500); // Delay simulasi bot berpikir
+        }, 500); 
     }
 
-    // Event listener untuk tombol toggle chatbot
+    // Mengatur Event Listeners untuk interaksi chatbot
+    // Memastikan semua elemen ada sebelum menambahkan event listener
     if (chatbotToggle && chatbotWindow && chatCloseButton && chatMessages && chatInput && chatSendButton && chatQuickOptions) {
+        // Event listener untuk tombol toggle (membuka/menutup chatbot)
         chatbotToggle.addEventListener('click', () => {
-            chatbotWindow.classList.toggle('hidden');
+            chatbotWindow.classList.toggle('hidden'); // Mengubah visibilitas jendela chat
             if (!chatbotWindow.classList.contains('hidden')) {
                 // Sapaan awal dan opsi cepat saat chat dibuka
                 setTimeout(() => {
@@ -170,28 +185,29 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Event listener untuk tombol tutup chat
+        // Event listener untuk tombol tutup chat (di dalam jendela chat)
         chatCloseButton.addEventListener('click', () => {
-            chatbotWindow.classList.add('hidden');
+            chatbotWindow.classList.add('hidden'); // Sembunyikan jendela chat
             chatMessages.innerHTML = ''; // Bersihkan pesan saat ditutup
             chatQuickOptions.innerHTML = ''; // Bersihkan opsi saat ditutup
         });
 
         // Event listener untuk tombol kirim pesan
         chatSendButton.addEventListener('click', () => {
-            const message = chatInput.value.trim();
+            const message = chatInput.value.trim(); // Ambil teks dari input
             if (message) {
-                handleUserMessage(message);
+                handleUserMessage(message); // Proses pesan jika tidak kosong
             }
         });
 
-        // Event listener untuk input field (tekan Enter)
+        // Event listener untuk input field (mendengarkan tombol Enter)
         chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                chatSendButton.click(); // Picu klik tombol kirim
+                chatSendButton.click(); // Picu klik tombol kirim saat Enter ditekan
             }
         });
     } else {
+        // Pesan error di console jika ada elemen HTML chatbot yang tidak ditemukan
         console.error("Chatbot elements not found. Please check your HTML structure or ensure scripts.js is loaded correctly.");
     }
 });
