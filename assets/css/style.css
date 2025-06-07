@@ -476,15 +476,7 @@ footer {
     color: var(--accent-color); /* Opsional: Mengubah warna saat di-hover menjadi emas lembut */
 }
 
-/* Jika ada tautan sosial media di footer yang juga ingin dipastikan putih */
-.footer-col .social-links a {
-    color: var(--white-color);
-}
-
-.footer-col .social-links a:hover {
-    color: var(--accent-color);
-}
-
+/* Social links styling in footer */
 .social-links a {
     color: var(--white-color);
     font-size: 1.5em;
@@ -495,6 +487,11 @@ footer {
 .social-links a:hover {
     color: var(--accent-color);
 }
+/* Ensure TikTok icon is available in Font Awesome v6 */
+.fab.fa-tiktok {
+    /* No specific style needed beyond general social-links a if default is fine */
+}
+
 
 .copyright {
     text-align: center;
@@ -803,6 +800,7 @@ footer {
     text-align: left;
 }
 
+/* Pastikan styling untuk social-links a berlaku untuk TikTok juga */
 .contact-info .social-links a {
     margin-right: 20px;
     font-size: 1.3em;
